@@ -23,7 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'];
+$config['base_url'] .= preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])) . '/';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,7 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -221,7 +223,7 @@ $config['allow_get_array'] = TRUE;
 |
 | 	array(2) = Debug Messages, without Error Messages
 |
-| For a live site you'll usually only enable Errors (1) to be logged otherwise
+| For a live     you'll usually only enable Errors (1) to be logged otherwise
 | your log files will fill up very fast.
 |
 */
