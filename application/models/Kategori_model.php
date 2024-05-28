@@ -19,4 +19,23 @@ class Kategori_model extends CI_Model
     public function getKategori(){
         return $this->db->get_where($this->_table, ['user_id' => $this->user_id,])->result();
     }
+
+    public function findById($kategori_id){
+        return $this->db->get_where($this->_table, ['user_id' => $this->user_id, 'id' => $kategori_id])->row();
+    }
+
+    public function insert($data){
+        $data['user_id'] = $this->user_id;
+        return $this->db->insert($this->_table, $data);
+    }
+
+    public function update($id, $data){        
+        return $this->db->update($this->_table, $data, ['id' => $id]);
+    }
+
+    public function delete($id)
+    {
+        return $this->db->delete($this->_table, ['id' => $id]);
+    }
+
 }

@@ -6,8 +6,9 @@ $(function () {
   // =====================================
   var chart = {
     series: [
-      { name: "Earnings this month:", data: [355, 390, 300, 350, 390, 180, 355, 390] },
-      { name: "Expense this month:", data: [280, 250, 325, 215, 250, 310, 280, 250] },
+      { name: "Todo", data: [10, 2, 3, 2, 1, 10, 5, 3] },
+      { name: "In Progress", data: [280, 250, 325, 215, 250, 310, 280, 250] },
+      { name: "Done", data: [280, 250, 325, 215, 250, 310, 280, 250] },
     ],
 
     chart: {
@@ -21,7 +22,7 @@ $(function () {
     },
 
 
-    colors: ["#5D87FF", "#49BEFF"],
+    colors: ["#FA896B", "#FFAE1F", "#13DEB9"],
 
 
     plotOptions: {
@@ -67,7 +68,7 @@ $(function () {
     yaxis: {
       show: true,
       min: 0,
-      max: 400,
+      max: 50,
       tickAmount: 4,
       labels: {
         style: {

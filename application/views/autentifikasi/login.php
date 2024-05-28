@@ -7,6 +7,7 @@
     </div>
     <p class="text-center">Login</p>
     <?= $this->session->flashdata('error') ? '<span class="text-danger">' . $this->session->flashdata('error') . '</span>': '' ?>
+    
     <?= form_open(''); ?>
 
         <div class="mb-3">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 12:20 PM
+-- Generation Time: May 28, 2024 at 06:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,16 +35,6 @@ CREATE TABLE `activity` (
   `label` enum('hard','medium','easy') NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `activity`
---
-
-INSERT INTO `activity` (`id`, `user_id`, `deskripsi`, `status`, `label`, `tanggal_dibuat`) VALUES
-(3, 2, 'asdas', 'progress', 'hard', '2024-05-14'),
-(4, 2, 'zxcjzxczkjx', 'todo', 'hard', '2024-05-01'),
-(5, 2, 'klzcns', 'done', 'hard', '2024-05-02'),
-(6, 2, 'asdlkasd', 'todo', 'hard', '2024-05-27');
 
 -- --------------------------------------------------------
 
@@ -78,6 +68,7 @@ CREATE TABLE `kategori_resume` (
 
 CREATE TABLE `resume` (
   `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `judul` varchar(100) NOT NULL,
   `slug` varchar(125) NOT NULL,
   `deskripsi` text NOT NULL,
@@ -122,21 +113,22 @@ ALTER TABLE `activity`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`);
+  ADD KEY `kategori_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `kategori_resume`
 --
 ALTER TABLE `kategori_resume`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kategori_id` (`kategori_id`),
-  ADD UNIQUE KEY `resume_id` (`resume_id`);
+  ADD KEY `asd` (`resume_id`),
+  ADD KEY `kategori_resume_kategori_id_foreign` (`kategori_id`);
 
 --
 -- Indexes for table `resume`
 --
 ALTER TABLE `resume`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `resume_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `user`
@@ -154,19 +146,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kategori_resume`
 --
 ALTER TABLE `kategori_resume`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -196,6 +194,12 @@ ALTER TABLE `kategori`
 ALTER TABLE `kategori_resume`
   ADD CONSTRAINT `kategori_resume_kategori_id_foreign` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `kategori_resume_resume_id_foreign` FOREIGN KEY (`resume_id`) REFERENCES `resume` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `resume`
+--
+ALTER TABLE `resume`
+  ADD CONSTRAINT `resume_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -7,6 +7,15 @@
   <title>YOA</title>
   <link rel="shortcut icon" type="image/png" href="<?= base_url('assets/images/logos/favicon.png') ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css') ?>" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js') ?>" ></script>
+  <?php if($url == 'resume') { ?>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" ></script>
+  <script src="<?= base_url('assets/ckeditor/build/ckeditor.js'); ?>"></script>
+  <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
+  <?php } ?>
+  
+
 </head>
 
 <body>
@@ -39,7 +48,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link <?= $url == 'activity' ? 'active' : ''?>" href="<?= site_url('activity') ?>" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="ti ti-list-check fs-6"></i>
                 </span>
                 <span class="hide-menu">Activity</span>
               </a>
@@ -47,7 +56,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link <?= $url == 'resume' ? 'active' : ''?>" href="<?= site_url('resume') ?>" aria-expanded="false">
                 <span>
-                  <i class="ti ti-alert-circle"></i>
+                <i class="ti ti-article"></i>
                 </span>
                 <span class="hide-menu">Resume</span>
               </a>
@@ -55,7 +64,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link <?= $url == 'profil' ? 'active' : ''?>" href="<?= site_url('profil') ?>" aria-expanded="false">
                 <span>
-                  <i class="ti ti-file-description"></i>
+                  <i class="ti ti-user"></i>
                 </span>
                 <span class="hide-menu">Profil</span>
               </a>
@@ -90,19 +99,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="<?= site_url('profil') ?>" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-mail fs-6"></i>
-                      <p class="mb-0 fs-3">My Account</p>
-                    </a>
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-list-check fs-6"></i>
-                      <p class="mb-0 fs-3">My Task</p>
-                    </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                      <p class="mb-0 fs-3">Profilku</p>
+                    </a>             
+                    <a href="<?= site_url('logout') ?>" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
@@ -116,7 +117,6 @@
       </div>
     </div>
   </div>
-  <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js') ?>"></script>
   <script src="<?= base_url('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/sidebarmenu.js') ?>"></script>
   <script src="<?= base_url('assets/js/app.min.js') ?>"></script>

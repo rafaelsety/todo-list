@@ -7,6 +7,7 @@ class Profil extends CI_Controller {
 
     public function __construct(){        
         parent::__construct();
+        cek_login();
         $this->load->model('user_model');
         $this->load->library('form_validation');
          $this->user = $this->user_model->find($this->session->userdata('login_session')['user_id']);                
@@ -134,7 +135,13 @@ class Profil extends CI_Controller {
         $this->form_validation->set_rules('password_baru', 'Password Baru', 'required|trim|min_length[3]|differs[password_lama]');
         $this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'matches[password_baru]');        
         if ($this->form_validation->run() == false) {
-            $data['title'] = "Ubah Password";
+            $data = [
+                'nama' => $this->user->nama,
+                'username' => $this->user->username,
+                'email' => $this->user->email,
+                'foto' => $this->user->foto,
+                'url' => 'profil',
+            ];
             $this->template->load('template/user', 'profil/ubah-password', $data);
         } else {
             $input = $this->input->post(null, true);
