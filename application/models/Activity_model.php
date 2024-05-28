@@ -80,6 +80,34 @@ class Activity_model extends CI_Model
         return $this->db->delete($this->_table, ['id' => $id]);
     }
 
+    public function get_activity_status_count_last_4_days()
+    {
+        $query = $this->db->query("
+            SELECT 
+                DATE(tanggal_dibuat) as date, 
+                status, 
+                COUNT(*) as count 
+            FROM 
+                activity 
+            WHERE 
+                DATE(tanggal_dibuat) >= DATE(NOW()) - INTERVAL 4 DAY 
+            GROUP BY 
+                DATE(tanggal_dibuat), status
+        ");
+
+        return $query->result_array();
+    }
+
+    public function get_last_6_activity_excluding_done()
+    {
+        $this->db->select('*');
+        $this->db->from('activity');
+        $this->db->where('status !=', 'done');
+        $this->db->order_by('tanggal_dibuat', 'DESC');
+        $this->db->limit(6);
+        $query = $this->db->get();        
+        return $query->result();
+    }
 
       
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2024 at 06:45 PM
+-- Generation Time: May 28, 2024 at 07:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,6 +35,17 @@ CREATE TABLE `activity` (
   `label` enum('hard','medium','easy') NOT NULL,
   `tanggal_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `user_id`, `deskripsi`, `status`, `label`, `tanggal_dibuat`) VALUES
+(10, 1, 'asd', 'todo', 'easy', '2024-05-28'),
+(11, 1, 'xzczxc,zmxc,cmz,cm,z mz,c z zx ,cmzm cmzx czcnjkzc', 'done', 'hard', '2024-05-26'),
+(12, 1, 'z,c mz, ,czc', 'todo', 'hard', '2024-05-28'),
+(13, 1, 'z,xmckjnkdjnqwd', 'progress', 'medium', '2024-05-27'),
+(14, 1, 'asdsadaslkd', 'todo', 'easy', '2024-05-27');
 
 -- --------------------------------------------------------
 
@@ -146,7 +157,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `kategori`
